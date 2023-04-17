@@ -1,27 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vpro-db
+  name: vprodb
   labels:
-    app: vpro-db
+    app: vprodb
 
 spec:
   selector:
     matchLabels:
-      app: vpro-db
+      app: vprodb
   replicas: 1
   template:
     metadata:
       labels:
-        app: vpro-db
+        app: vprodb
     spec:
       containers:
-        - name: vpro-db
+        - name: vprodb
           image: imranvisualpath/vprdbfix
-          args:
-            - "ignore-db-dir=lost+found"
           ports:
-            - name: vpro-db-port
+            - name: vprodb-port
               containerPort: 3306
           env:
             - name: MY_SQL_ROOT_PASSWORD
