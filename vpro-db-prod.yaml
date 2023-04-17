@@ -20,9 +20,6 @@ spec:
           image: imranvisualpath/vprdbfix
           args:
             - "ignore-db-dir=lost+found"
-          volumeMounts:
-            - mountPath: /var/lib/mysql
-              name: vpro-db-data
           ports:
             - name: vpro-db-port
               containerPort: 3306
@@ -32,10 +29,3 @@ spec:
                 secretKeyRef:
                   name: secret
                   key: db-pass
-      nodeSelector:
-        zone: us-east-1a
-      volumes:
-        - name: vpro-db-data
-          awsElasticBlockStore:
-            volumeID: vol-083960a989bfdffd1
-            fsType: ext4
